@@ -1,8 +1,10 @@
 # Asset provenance
 
+- `assets/surf-banner.png`: banner image supplied by Marco on 9 November 2026, used unchanged. It is displayed at full height and aligned to the right so the character and surfboard remain visible on narrow screens.
+
 - `assets/marco-becattini-profile.png`: profile photograph supplied by Marco on 9 November 2026. The original PNG is preserved; the circular portrait is framed using CSS.
 - `assets/marco-becattini.jpg`: previous Google Scholar profile portrait, retained as an earlier asset.
-- `assets/research-desk.png`: original banner generated for this website using the built-in ImageGen tool on 9 November 2026. Saved in this repository and copied into `docs/assets/` by the build. It does not depict a specific real desk or workspace.
+- `assets/research-desk.png`: previous banner, originally generated for this website using the built-in ImageGen tool on 9 November 2026. Saved in this repository and copied into `docs/assets/` by the build. It does not depict a specific real desk or workspace.
 - `assets/fonts/`: PT Sans Narrow and PT Serif, distributed under the SIL Open Font License. The family-specific OFL files are included alongside the font files. Fonts are served locally.
 - `assets/favicon.svg`: original typographic MB monogram.
 
