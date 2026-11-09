@@ -38,8 +38,20 @@ function paper(item) {
     <div id="${id}-bibtex" class="paper-panel" hidden><button type="button" class="copy-button" data-copy="${id}-citation">Copy citation</button><span class="copy-status" role="status"></span><pre id="${id}-citation">${escape(item.bibtex)}</pre></div>
   </li>`;
 }
+const sidebarIcons = {
+  scholar: '<path d="M1 6.2 8 2.8l7 3.4L8 9.6 1 6.2Zm3 1.5v3.4c2 2 6 2 8 0V7.7M15 6.2v4"/>',
+  university: '<path d="M1.5 5.8 8 2l6.5 3.8h-13ZM3.5 6v5.8m4.5-5.8v5.8m4.5-5.8v5.8M2 12h12m-12.5 2h13"/>',
+  lab: '<path d="m5 4.5-3.5 3.5L5 11.5m6-7 3.5 3.5-3.5 3.5m-1.4-9-3.2 11"/>',
+  // GitHub mark from Primer Octicons (MIT).
+  github: '<path fill="currentColor" stroke="none" d="M6.766 11.328c-2.063-.25-3.516-1.734-3.516-3.656 0-.781.281-1.625.75-2.188-.203-.515-.172-1.609.063-2.062.625-.078 1.468.25 1.968.703.594-.187 1.219-.281 1.985-.281.765 0 1.39.094 1.953.265.484-.437 1.344-.765 1.969-.687.218.422.25 1.515.046 2.047.5.593.766 1.39.766 2.203 0 1.922-1.453 3.375-3.547 3.64.531.344.89 1.094.89 1.954v1.625c0 .468.391.734.86.547C13.781 14.359 16 11.53 16 8.03 16 3.61 12.406 0 7.984 0 3.563 0 0 3.61 0 8.031a7.88 7.88 0 0 0 5.172 7.422c.422.156.828-.125.828-.547v-1.25c-.219.094-.5.156-.75.156-1.031 0-1.64-.562-2.078-1.609-.172-.422-.36-.672-.719-.719-.187-.015-.25-.093-.25-.187 0-.188.313-.328.625-.328.453 0 .844.281 1.25.86.313.452.64.655 1.031.655s.641-.14 1-.5c.266-.265.47-.5.657-.656"/>',
+  linkedin: '<rect x="1.5" y="1.5" width="13" height="13" rx="2"/><path fill="currentColor" stroke="none" d="M4 6.5h1.7v5.4H4zM4.85 4a1 1 0 1 0 0 2 1 1 0 0 0 0-2zM7.1 6.5h1.6v.7c.35-.55.95-.85 1.65-.85 1.3 0 2.05.77 2.05 2.2v3.35h-1.7V8.95c0-.75-.3-1.12-.9-1.12-.65 0-1 .46-1 1.15v2.92H7.1z"/>',
+  email: '<rect x="1.5" y="3.5" width="13" height="9" rx="1.3"/><path d="m2 4.4 6 4.3 6-4.3"/>',
+};
+function sidebarIcon(name) {
+  return `<svg class="icon" viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${sidebarIcons[name]}</svg>`;
+}
 function sidebar() {
-  return `<aside class="author" aria-label="About Marco Becattini"><div class="author-photo-frame"><img class="author-photo" src="${escape(profile.photo)}" alt="Marco Becattini" width="150" height="150"></div><h2>${escape(profile.name)}</h2><p class="author-role">${escape(profile.role)} at the <a href="https://www.unifi.it/">${escape(profile.affiliation)}</a>.</p><ul class="author-links">${profile.links.map(link => `<li><span class="icon" aria-hidden="true">↗</span><a href="${escape(link.url)}">${escape(link.label)}</a></li>`).join('')}<li><span class="icon" aria-hidden="true">✉</span><a href="mailto:${escape(profile.email)}">e-Mail</a></li></ul></aside>`;
+  return `<aside class="author" aria-label="About Marco Becattini"><div class="author-photo-frame"><img class="author-photo" src="${escape(profile.photo)}" alt="Marco Becattini" width="150" height="150"></div><h2>${escape(profile.name)}</h2><p class="author-role">${escape(profile.role)} at the <a href="https://www.unifi.it/">${escape(profile.affiliation)}</a>.</p><ul class="author-links">${profile.links.map(link => `<li>${sidebarIcon(link.icon)}<a href="${escape(link.url)}">${escape(link.label)}</a></li>`).join('')}<li>${sidebarIcon('email')}<a href="mailto:${escape(profile.email)}">e-Mail</a></li></ul></aside>`;
 }
 function layout(id, title, content, description) {
   const href = nav.find(item=>item[0]===id)?.[2] || '/404.html';

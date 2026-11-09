@@ -20,19 +20,28 @@
   "links": [
     {
       "label": "Google Scholar",
+      "icon": "scholar",
       "url": "https://scholar.google.com/citations?user=0ibann4AAAAJ"
     },
     {
       "label": "UniFi · FLORE",
+      "icon": "university",
       "url": "https://flore.unifi.it/cris/rp/rp160920"
     },
     {
       "label": "STLab",
+      "icon": "lab",
       "url": "https://stlab.dinfo.unifi.it/"
     },
     {
       "label": "GitHub",
+      "icon": "github",
       "url": "https://github.com/MarcoBecattini"
+    },
+    {
+      "label": "LinkedIn",
+      "icon": "linkedin",
+      "url": "https://it.linkedin.com/in/marco-becattini-ai"
     }
   ],
   "activities": {
