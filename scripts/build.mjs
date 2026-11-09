@@ -9,7 +9,7 @@ const publications = JSON.parse(await readFile(path.join(root, 'data/publication
 const origin = 'https://marcobecattini.github.io';
 const styleVersion = createHash('sha256').update(await readFile(path.join(root, 'assets/site.css'))).digest('hex').slice(0, 12);
 const escape = value => String(value ?? '').replace(/[&<>"']/g, character => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[character]));
-const nav = [['about','About','/'],['publications','Publications','/publications/'],['cv','CV','/cv/'],['research','Research','/research/'],['teaching','Teaching','/teaching/'],['talks','Talks','/talks/'],['service','Service','/service/']];
+const nav = [['about','About','/'],['cv','CV','/cv/'],['publications','Publications','/publications/'],['research','Research','/research/'],['teaching','Teaching','/teaching/'],['talks','Talks','/talks/'],['service','Service','/service/']];
 const hiddenNavigation = new Set(['research', 'teaching', 'service', 'talks']);
 const authorLinks = new Map([['Roberto Verdecchia','https://robertoverdecchia.github.io/'],['Enrico Vicario','https://stlab.dinfo.unifi.it/vicario/'],['Leonardo Scommegna','https://leonardoscommegna.github.io/'],['Nuno Laranjeiro','https://eden.dei.uc.pt/~cnl/']]);
 function shortName(name) {
