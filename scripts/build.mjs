@@ -9,7 +9,7 @@ const publications = JSON.parse(await readFile(path.join(root, 'data/publication
 const origin = 'https://marcobecattini.github.io';
 const styleVersion = createHash('sha256').update(await readFile(path.join(root, 'assets/site.css'))).digest('hex').slice(0, 12);
 const escape = value => String(value ?? '').replace(/[&<>"']/g, character => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[character]));
-const nav = [['about','About','/'],['publications','Publications','/publications/'],['research','Research','/research/'],['teaching','Teaching','/teaching/'],['talks','Talks','/talks/'],['service','Service','/service/']];
+const nav = [['about','About','/'],['publications','Publications','/publications/'],['cv','CV','/cv/'],['research','Research','/research/'],['teaching','Teaching','/teaching/'],['talks','Talks','/talks/'],['service','Service','/service/']];
 const hiddenNavigation = new Set(['research', 'teaching', 'service', 'talks']);
 const authorLinks = new Map([['Roberto Verdecchia','https://robertoverdecchia.github.io/'],['Enrico Vicario','https://stlab.dinfo.unifi.it/vicario/'],['Leonardo Scommegna','https://leonardoscommegna.github.io/'],['Nuno Laranjeiro','https://eden.dei.uc.pt/~cnl/']]);
 function shortName(name) {
@@ -55,15 +55,37 @@ function sidebar() {
 }
 function layout(id, title, content, description) {
   const href = nav.find(item=>item[0]===id)?.[2] || '/404.html';
-  const featureImage = id === 'publications'
-    ? '<img class="publications-banner" src="/assets/snoopy-typewriter.webp" alt="" width="240" height="239">'
-    : '<img src="/assets/surf-banner.png" alt="" width="1022" height="168">';
+  const featureImages = {
+    publications: '<img class="feature-cutout" src="/assets/snoopy-typewriter.webp" alt="" width="240" height="239">',
+    cv: '<img class="feature-cutout" src="/assets/snoopy-aviator.webp" alt="" width="240" height="226">',
+  };
+  const featureImage = featureImages[id] ?? '<img src="/assets/surf-banner.png" alt="" width="1022" height="168">';
   return `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${escape(title)} — ${escape(profile.name)}</title><meta name="description" content="${escape(description)}"><link rel="canonical" href="${origin}${href}"><meta property="og:type" content="website"><meta property="og:title" content="${escape(title)} — Marco Becattini"><meta property="og:description" content="${escape(description)}"><meta property="og:url" content="${origin}${href}"><meta property="og:image" content="${origin}/assets/surf-banner.png"><link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/assets/fonts.css"><link rel="stylesheet" href="/assets/site.css?v=${styleVersion}"><script src="/assets/site.js" defer></script></head><body><a class="skip-link" href="#main">Skip to content</a><header class="site-header"><div class="header-inner"><a class="brand" href="/">Marco Becattini</a><nav class="main-nav" aria-label="Main navigation">${nav.filter(([key]) => !hiddenNavigation.has(key)).map(([key,label,url])=>`<a href="${url}"${id===key?' aria-current="page"':''}>${label}</a>`).join('')}</nav></div></header><div class="feature-image" aria-hidden="true">${featureImage}</div><div class="site-layout">${sidebar()}<main class="page-content" id="main"><h1>${escape(title)}</h1>${content}</main></div></body></html>\n`;
 }
 const pages = {
  about: ['About Me', `<p><em>“Then,” said the cat, “it really doesn’t matter, does it?”</em></p><div class="bio">${profile.biography.map(paragraph=>`<p>${escape(paragraph)}</p>`).join('')}</div><h2>Research Interests</h2><p><em>The smartest guy in a room is the room</em></p><ul class="research-list">${profile.interests.map(interest=>`<li>${escape(interest)}</li>`).join('')}</ul>`, 'Marco Becattini, PhD student in Smart Computing at the University of Florence. Software engineering for LLM-based multi-agent systems.'],
  publications: ['My Publications', `<p class="publication-intro">You can also browse my <a href="https://scholar.google.com/citations?user=0ibann4AAAAJ">Google Scholar profile</a>.</p><div class="publication-tools"><label for="publication-search">Filter <input id="publication-search" type="search" placeholder="Title, author, venue, year…" autocomplete="off"></label><output id="publication-count" aria-live="polite">${publications.length} publications</output><a href="/publications.bib" download>Download BibTeX</a></div><ul class="publication-list">${publications.map(paper).join('')}</ul><p id="no-results" class="empty-results" hidden>No publications match your search.</p><p class="scholarly-note">PDF links lead to publisher records, preprints, or author manuscripts. Copyright remains with the respective authors and rights holders.</p>`, 'Publications by Marco Becattini on LLM-based multi-agent systems, software architecture, reliability, and Digital Twin Networks.'],
+ cv: ['Curriculum Vitae', `
+   <p><em>Not all those who wander are lost</em></p>
+   <p class="cv-summary">I am a PhD student in Smart Computing at the University of Florence and work in research and development at Lascaux. My research focuses on the architecture, coordination, reliability, and performance of LLM-based multi-agent systems. I draw on my experience in software engineering and telecommunications to study how these systems can be designed and evaluated in practice.</p>
+   <p>If you’d like a copy of my full CV, feel free to <a href="mailto:${escape(profile.email)}">email me</a>.</p>
+   <h2>Current Roles</h2>
+   <ul class="cv-entries">
+     <li><div><strong>PhD Student in Smart Computing</strong><span><a href="https://stlab.dinfo.unifi.it/">University of Florence · Software Technologies Laboratory (STLab)</a></span></div></li>
+     <li><div><strong>Research and Development</strong><span><a href="https://www.lascaux.it/en/about-us/">Lascaux</a></span></div></li>
+     <li><div><strong>Scientific Advisor, Board of Directors</strong><span><a href="https://www.arezzoinnovazione.it/la-fondazione/">Fondazione Arezzo Innovazione</a></span></div></li>
+   </ul>
+   <h2>Selected Experience</h2>
+   <ul class="cv-entries">
+     <li><div><strong>Reply Group</strong><span>Innovation and strategy, followed by managing director and CEO roles 🇮🇹🇨🇭🇬🇧</span></div><span class="cv-date">2009–2023</span></li>
+     <li><div><strong>Accenture</strong><span>Software delivery, user experience, and CRM strategy 🇮🇹 🇮🇳</span></div><span class="cv-date">2007–2009</span></li>
+   </ul>
+   <h2>Education</h2>
+   <ul class="cv-entries">
+     <li><div><strong>Bachelor’s and Master’s degrees in Computer Engineering</strong><span>University of Florence</span></div><span class="cv-date">2000–2007</span></li>
+   </ul>
+ `, 'Academic and professional profile of Marco Becattini.'],
  research: ['Research', `<div class="bio"><p>${escape(profile.biography[1])}</p><h2>LLM-Based Multi-Agent Systems</h2><p>My doctoral research connects agent organisation and execution control with reliability and performance under uncertainty. It includes SALLMA, accountability-based agent cooperation, social agent discovery, and empirical studies of HorseReport and CAPRA.</p><p>My thesis is entitled <em>On Reliability and Performance in LLM-Based Multi-Agent Systems</em>.</p><h2>Digital Twin Networks and Quantitative Evaluation</h2><p>My earlier work explored Digital Twin Networks, sustainable in-network computing, Mobile Edge Computing, and software rejuvenation. These studies provide a foundation for evaluating the behaviour of complex software systems.</p><h2>Research Interests</h2><ul class="research-list">${profile.interests.map(interest=>`<li>${escape(interest)}</li>`).join('')}</ul><p>For details and results, see <a href="/publications/">my publications</a>.</p></div>`, 'Research on software engineering, architecture, reliability and performance of LLM-based multi-agent systems.'],
 };
 for (const [id,title,intro] of [['teaching','Teaching','Thesis supervision and research projects in software engineering.'],['talks','Talks','Research presentations and conference contributions.'],['service','Academic Activities','Research groups and academic collaborations.']]) {
