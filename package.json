@@ -1,0 +1,9 @@
+{
+  "name": "marco-becattini-academic-website",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Academic website of Marco Becattini",
+  "engines": { "node": ">=22" },
+  "scripts": { "build": "node scripts/build.mjs", "preview": "python3 -m http.server 5180 --bind 127.0.0.1 --directory docs" }
+}

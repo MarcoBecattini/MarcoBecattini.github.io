@@ -1,0 +1,68 @@
+{
+  "name": "Marco Becattini",
+  "initials": "MB",
+  "role": "PhD Student in Smart Computing",
+  "affiliation": "University of Florence",
+  "location": "Florence, Italy",
+  "email": "marco.becattini@unifi.it",
+  "photo": "/assets/marco-becattini.jpg",
+  "biography": [
+    "I am a PhD student in Smart Computing at the University of Florence, where I am part of the Software Technologies Laboratory (STLab) in the Department of Information Engineering. My supervisor is Prof. Enrico Vicario.",
+    "My research investigates how software engineering principles and techniques can be adapted to design and govern LLM-based multi-agent systems. I focus on software architecture, agent coordination and accountability, execution control, reliability, and performance.",
+    "My work combines architectural proposals with empirical studies in industrial and educational settings. My earlier research addressed Digital Twin Networks, Mobile Edge Computing, and the quantitative evaluation of software reliability."
+  ],
+  "interests": [
+    "Software Engineering for AI (SE4AI)",
+    "LLM-based multi-agent systems",
+    "Software architecture and agent coordination",
+    "Reliability and performance evaluation",
+    "Digital Twin Networks"
+  ],
+  "links": [
+    {
+      "label": "Google Scholar",
+      "url": "https://scholar.google.com/citations?user=0ibann4AAAAJ"
+    },
+    {
+      "label": "UniFi · FLORE",
+      "url": "https://flore.unifi.it/cris/rp/rp160920"
+    },
+    {
+      "label": "STLab",
+      "url": "https://stlab.dinfo.unifi.it/"
+    },
+    {
+      "label": "GitHub",
+      "url": "https://github.com/MarcoBecattini"
+    }
+  ],
+  "activities": {
+    "teaching": [
+      {
+        "title": "Thesis supervision and research projects",
+        "detail": "I supervise thesis projects in software engineering, LLM-based agent systems, and quantitative evaluation. Please contact me by email to discuss possible topics.",
+        "url": "mailto:marco.becattini@unifi.it"
+      }
+    ],
+    "talks": [
+      {
+        "title": "Engineering Reliability into LLM Multi-Agent Systems: An Industrial Experience",
+        "date": "ISSRE 2026",
+        "detail": "Presentation of the HorseReport study at the Industry Track of the IEEE International Symposium on Software Reliability Engineering.",
+        "url": "https://cyprusconferences.org/issre2026/program/"
+      }
+    ],
+    "service": [
+      {
+        "title": "Software Technologies Laboratory",
+        "detail": "Research activities within STLab, Department of Information Engineering, University of Florence.",
+        "url": "https://stlab.dinfo.unifi.it/"
+      },
+      {
+        "title": "Research visit to Coimbra",
+        "date": "2026",
+        "detail": "Research visit at the University of Coimbra, Portugal."
+      }
+    ]
+  }
+}
