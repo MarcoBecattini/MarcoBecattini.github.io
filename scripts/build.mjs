@@ -51,7 +51,7 @@ function sidebarIcon(name) {
   return `<svg class="icon" viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${sidebarIcons[name]}</svg>`;
 }
 function sidebar() {
-  return `<aside class="author" aria-label="About Marco Becattini"><div class="author-photo-frame"><img class="author-photo" src="${escape(profile.photo)}" alt="Marco Becattini" width="150" height="150"></div><h2>${escape(profile.name)}</h2><p class="author-role">${escape(profile.role)} at the <a href="https://www.unifi.it/">${escape(profile.affiliation)}</a>.</p><ul class="author-links">${profile.links.map(link => `<li>${sidebarIcon(link.icon)}<a href="${escape(link.url)}">${escape(link.label)}</a></li>`).join('')}<li>${sidebarIcon('email')}<a href="mailto:${escape(profile.email)}">e-Mail</a></li></ul></aside>`;
+  return `<aside class="author" aria-label="About Marco Becattini"><div class="author-photo-frame"><img class="author-photo" src="${escape(profile.photo)}" alt="Marco Becattini" width="150" height="150"></div><h2>${escape(profile.name)}</h2><p class="author-role">${escape(profile.role)} at the <a href="https://www.unifi.it/">${escape(profile.affiliation)}</a></p><ul class="author-links">${profile.links.map(link => `<li>${sidebarIcon(link.icon)}<a href="${escape(link.url)}">${escape(link.label)}</a></li>`).join('')}<li>${sidebarIcon('email')}<a href="mailto:${escape(profile.email)}">e-Mail</a></li></ul></aside>`;
 }
 function layout(id, title, content, description) {
   const href = nav.find(item=>item[0]===id)?.[2] || '/404.html';
